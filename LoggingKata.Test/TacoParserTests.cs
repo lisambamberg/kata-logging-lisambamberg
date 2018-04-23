@@ -6,24 +6,49 @@ namespace LoggingKata.Test
     public class TacoParserTests
     {
         [Fact]
-        public void ShouldDoSomething()
+        public void ShouldTestParse()
         {
-            // TODO: Complete Something, if anything
+            //Arrange
+            //Act
+            //Assert
+            //dont need this fact!
         }
+        // TODO: Complete Something, if anything
+
 
         [Theory]
-        [InlineData("Example")]
-        public void ShouldParse(string str)
+        [InlineData(-84.677017, 34.073638)]
+        [InlineData("notnull")]
+        [InlineData("")]
+        [InlineData("1234,1234,1234")]
+        public void ShouldParse(string line)
         {
+            var parser = new TacoParser();
+
+            var actual = parser.Parse(line);
+
+            Assert.NotNull(actual);
+
             // TODO: Complete Should Parse
         }
 
         [Theory]
         [InlineData(null)]
         [InlineData("")]
-        public void ShouldFailParse(string str)
+        [InlineData("1,a,a")]
+        [InlineData("a,1")]
+        [InlineData("1234,1234,1234")]
+        [InlineData(1000, 1000)]
+        public void ShouldFailParse(string line)
         {
+            var parser = new TacoParser();
+
+            var actual = parser.Parse(line);
+
+            Assert.Null(actual);
+
             // TODO: Complete Should Fail Parse
+
         }
     }
 }
