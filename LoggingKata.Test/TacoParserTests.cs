@@ -19,8 +19,8 @@ namespace LoggingKata.Test
         [Theory]
         [InlineData(-84.677017, 34.073638)]
         [InlineData("notnull")]
-        [InlineData("")]
-        [InlineData("1234,1234,1234")]
+        //[InlineData("")]
+        // [InlineData("1234,1234,1234")]
         public void ShouldParse(string line)
         {
             var parser = new TacoParser();
@@ -35,9 +35,9 @@ namespace LoggingKata.Test
         [Theory]
         [InlineData(null)]
         [InlineData("")]
-        [InlineData("1,a,a")]
+        [InlineData("abc,abc,abc")]
         [InlineData("a,1")]
-        [InlineData("1234,1234,1234")]
+        // [InlineData("1234,1234,1234")]
         [InlineData(1000, 1000)]
         public void ShouldFailParse(string line)
         {

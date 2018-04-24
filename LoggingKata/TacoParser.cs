@@ -15,47 +15,43 @@ namespace LoggingKata
             logger.LogInfo("Begin parsing");
 
             {
-                // Take your line and use line.Split(',') to split it up into an array of strings, separated by the char ','
-                //var cells = line.Split(',');
-
-                // If your array.Length is less than 3, something went wrong
-             //   if (cells.Length < 3)
-               // {
-                 //   return null;
-                    // Log that and return null
-              //  }
+                //Done  // Take your line and use line.Split(',') to split it up into an array of strings, separated by the char ','
+                //Done // If your array.Length is less than 3, something went wrong
 
                 // grab the long from your array at index 0
                 // grab the lat from your array at index 1
                 // grab the name from your array at index 2
-                
 
-                // Your going to need to parse your string as a `double`
+                //Done // Your going to need to parse your string as a `double`
                 // which is similar to parse a string as an `int`
-               /*
+                var cells = line.Split(',');
+                if (cells.Length < 3)
+                {
+                    logger.LogWarning("This is not valid");
+                    return null;
+                }
+
+                if (string.IsNullOrEmpty(line))
+                {
+                    logger.LogWarning("Contains empty string and cannot be parsed.");
+                    return null;
+                }
 
                 try
                 {
-                    var results = double.Parse("");
-                   // var longitude = 0.0;
-                    var maxLong = 180.0;
-                    //var latitude = 0.0;
-                    var maxLat = 90.0;
-                    var name = "";
-
-                    var longitude = new cells[0];
-                    var latitude = new cells[1];
-                    var name = new cells[2];
-
-                    if (longitude < maxLong || latitude < maxLat)
-                    {
-                        return null;
-                    }
+                    // ?var results = double.Parse();
+                    var longitude = double.Parse(cells[0]);
+                   // ?var maxLong = double.Parse();
+                    var latitude = double.Parse(cells[1]);
+                   // ?var maxLat = double.Parse();
+                   
+                   // ?var location
 
                 }
 
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    Console.WriteLine(ex);
                     return null;
                 }
                 // You'll need to create a TacoBell class
@@ -66,10 +62,10 @@ namespace LoggingKata
 
                 // Then, return the instance of your TacoBell class
                 // Since it conforms to ITrackable
-            }*/
-            //DO not fail if one record parsing fails, return null
-           return null; //TODO Implement
-                }
+
+                //DO not fail if one record parsing fails, return null
+                return null; //TODO Implement
+            }
         }
     }
 }
