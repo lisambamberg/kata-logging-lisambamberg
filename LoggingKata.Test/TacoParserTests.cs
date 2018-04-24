@@ -5,21 +5,20 @@ namespace LoggingKata.Test
 {
     public class TacoParserTests
     {
-        [Fact]
-        public void ShouldTestParse()
-        {
+        //[Fact]
+        //public void ShouldTestParse()
+        //{
             //Arrange
             //Act
             //Assert
             //dont need this fact!
-        }
+       // }
         // TODO: Complete Something, if anything
 
 
         [Theory]
-        [InlineData(-84.677017, 34.073638)]
-        [InlineData("notnull")]
-        //[InlineData("")]
+        //[InlineData(-84.677017, 34.073638)]
+        [InlineData(-84.677017, 34.073638, "Taco Bell Acwort... (Free trial * Add to Cart for a full POI info)")]
         // [InlineData("1234,1234,1234")]
         public void ShouldParse(string line)
         {
@@ -33,12 +32,9 @@ namespace LoggingKata.Test
         }
 
         [Theory]
-        [InlineData(null)]
+        [InlineData("null")]
         [InlineData("")]
-        [InlineData("abc,abc,abc")]
         [InlineData("a,1")]
-        // [InlineData("1234,1234,1234")]
-        [InlineData(1000, 1000)]
         public void ShouldFailParse(string line)
         {
             var parser = new TacoParser();

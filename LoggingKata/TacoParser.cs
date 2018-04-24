@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Linq.Expressions;
 
 namespace LoggingKata
@@ -25,7 +26,7 @@ namespace LoggingKata
                 //Done // Your going to need to parse your string as a `double`
                 // which is similar to parse a string as an `int`
                 var cells = line.Split(',');
-                if (cells.Length < 3)
+                if (cells.Length < 2)
                 {
                     logger.LogWarning("This is not valid");
                     return null;
@@ -33,25 +34,32 @@ namespace LoggingKata
 
                 if (string.IsNullOrEmpty(line))
                 {
-                    logger.LogWarning("Contains empty string and cannot be parsed.");
+                    logger.LogError("Contains empty string and cannot be parsed.");
                     return null;
                 }
 
                 try
                 {
-                    // ?var results = double.Parse();
-                    var longitude = double.Parse(cells[0]);
-                   // ?var maxLong = double.Parse();
-                    var latitude = double.Parse(cells[1]);
-                   // ?var maxLat = double.Parse();
-                   
-                   // ?var location
+                    //make MaxLongitude and MaxLatitude
+                    var lon = double.Parse(cells[0]);
+                    if (lon > Max || lon < Max)
+                    {
+                        logger.LogWarning("Nope");
+                        return null;
+                    }
 
+                    var lat = double.Parse(cells[1]);
+                    if (lat > Max || lat < Max)
+                    {
+                        logger.LogWarning("Nope");
+                        return null;
+                    }
+                   
                 }
 
                 catch (Exception ex)
                 {
-                    Console.WriteLine(ex);
+                    logger.LogError("Failure", ex);
                     return null;
                 }
                 // You'll need to create a TacoBell class
