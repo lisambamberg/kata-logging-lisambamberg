@@ -4,16 +4,13 @@ using System.Linq.Expressions;
 
 namespace LoggingKata
 {
-    /// <summary>
-    /// Parses a POI file to locate all the TacoBells
-    /// </summary>
     public class TacoParser
     {
         readonly ILog logger = new TacoLogger();
 
         public ITrackable Parse(string line)
         {
-            logger.LogInfo("Begin parsing");
+            //logger.LogInfo("Begin parsing");
 
             {
                 var cells = line.Split(',');
@@ -56,7 +53,7 @@ namespace LoggingKata
                     return null;
                 }
 
-                //return null; //TODO Implement
+              
             }
         }
     }
