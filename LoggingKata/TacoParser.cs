@@ -10,8 +10,6 @@ namespace LoggingKata
 
         public ITrackable Parse(string line)
         {
-            //logger.LogInfo("Begin parsing");
-
             {
                 var cells = line.Split(',');
                 if (cells.Length < 2)
@@ -52,8 +50,6 @@ namespace LoggingKata
                     logger.LogError("Failure", ex);
                     return null;
                 }
-
-              
             }
         }
     }

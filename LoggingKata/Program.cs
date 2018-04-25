@@ -47,7 +47,6 @@ namespace LoggingKata
                     distance = newDistance;
                 }
             }
-
             Console.WriteLine($"These are the two Taco Bells furthest away from each other: \n\t{a?.Name} and \n\t{b?.Name}");
             Console.WriteLine($"They are {distance / 0.000621371} miles apart.");
             Console.ReadLine();
