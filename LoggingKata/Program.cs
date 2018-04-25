@@ -8,13 +8,13 @@ namespace LoggingKata
     {
         //Why do you think we use ILog?
         static readonly ILog logger = new TacoLogger();
-        const string csvPath = "TacoBell-US-AL.csv";
+        private const string CsvPath = "TacoBell-US-AL.csv";
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             logger.LogInfo("Log initialized");
 
-            var lines = File.ReadAllLines(csvPath);
+            var lines = File.ReadAllLines(CsvPath);
 
             logger.LogInfo($"Lines: {lines[0]}");
 
@@ -23,7 +23,10 @@ namespace LoggingKata
             var locations = lines.Select(parser.Parse);
 
             // TODO:  Find the two TacoBells in Alabama that are the furthurest from one another.
-            // HINT:  You'll need two nested forloops
+            // HINT:  You'll need two nested foreachloops
+            //origin nd destination 
+
+            // compare and find greatest possible points 
         }
     }
 }

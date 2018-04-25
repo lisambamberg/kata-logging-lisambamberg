@@ -16,15 +16,6 @@ namespace LoggingKata
             logger.LogInfo("Begin parsing");
 
             {
-                //Done  // Take your line and use line.Split(',') to split it up into an array of strings, separated by the char ','
-                //Done // If your array.Length is less than 3, something went wrong
-
-                // Done // grab the long from your array at index 0
-                // Done //grab the lat from your array at index 1
-                // Done //grab the name from your array at index 2
-
-                //Done // Your going to need to parse your string as a `double`
-                // which is similar to parse a string as an `int`
                 var cells = line.Split(',');
                 if (cells.Length < 2)
                 {
@@ -40,25 +31,22 @@ namespace LoggingKata
 
                 try
                 {
-                    var double.MaxLat = 90;
-                    var double.MxLon = 180;
                     var lon = double.Parse(cells[0]);
-                    if (lon > MaxLon || lon < -MaxLon)
+                    if (lon > Point.MaxLon || lon < -Point.MaxLon)
                     {
                         logger.LogWarning("Not within range");
                         return null;
                     }
 
                     var lat = double.Parse(cells[1]);
-                    if (lat > MaxLat || lat < -MaxLat)
+                    if (lat > Point.MaxLat || lat < -Point.MaxLat)
                     {
                         logger.LogWarning("Not within range");
                         return null;
                     }
 
-                    //Point { Longitude = lon, Latitude = lat };
-                    new ITrackable Object = new TacoBell();
-                    return new TacoBell { Location = Point, Name = cells[2] };
+                    var point = new Point { Latitude = lat, Longitude = lon };
+                    return new TacoBell { Location = point, Name = cells.Length > 2 ? cells[2] : null };
                 }
 
                 catch (Exception ex)
@@ -66,17 +54,8 @@ namespace LoggingKata
                     logger.LogError("Failure", ex);
                     return null;
                 }
-                // Done //You'll need to create a TacoBell class
-                //that conforms to ITrackable
 
-                // Done// Then, you'll need an instance of the TacoBell class
-                // Done //With the name and point set correctly
-
-                // Done //Then, return the instance of your TacoBell class
-                // Since it conforms to ITrackable
-
-                //DO not fail if one record parsing fails, return null
-                return null; //TODO Implement
+                //return null; //TODO Implement
             }
         }
     }
