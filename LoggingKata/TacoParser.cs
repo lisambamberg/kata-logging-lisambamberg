@@ -46,7 +46,8 @@ namespace LoggingKata
                     }
 
                     var point = new Point { Latitude = lat, Longitude = lon };
-                    return new TacoBell { Location = point, Name = cells.Length > 2 ? cells[2] : null };
+                   var name = cells.Length > 2 ? cells[2] : null;
+                    return new TacoBell (name, point  );
                 }
 
                 catch (Exception ex)
