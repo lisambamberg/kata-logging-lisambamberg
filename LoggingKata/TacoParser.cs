@@ -10,46 +10,45 @@ namespace LoggingKata
 
         public ITrackable Parse(string line)
         {
+
+            if (string.IsNullOrEmpty(line))
             {
-                var cells = line.Split(',');
-                if (cells.Length < 2)
+                logger.LogError("Contains empty string and cannot be parsed.");
+                return null;
+            }
+
+            var cells = line.Split(',');
+            if (cells.Length < 2)
+            {
+                logger.LogWarning("This is not valid");
+                return null;
+            }
+
+            try
+            {
+                var lon = double.Parse(cells[0]);
+                if (lon > Point.MaxLon || lon < -Point.MaxLon)
                 {
-                    logger.LogWarning("This is not valid");
+                    logger.LogWarning("Not within range");
                     return null;
                 }
 
-                if (string.IsNullOrEmpty(line))
+                var lat = double.Parse(cells[1]);
+                if (lat > Point.MaxLat || lat < -Point.MaxLat)
                 {
-                    logger.LogError("Contains empty string and cannot be parsed.");
+                    logger.LogWarning("Not within range");
                     return null;
                 }
 
-                try
-                {
-                    var lon = double.Parse(cells[0]);
-                    if (lon > Point.MaxLon || lon < -Point.MaxLon)
-                    {
-                        logger.LogWarning("Not within range");
-                        return null;
-                    }
+                var point = new Point { Latitude = lat, Longitude = lon };
+                var name = cells.Length > 2 ? cells[2] : null;
+                return new TacoBell(name, point);
+            }
 
-                    var lat = double.Parse(cells[1]);
-                    if (lat > Point.MaxLat || lat < -Point.MaxLat)
-                    {
-                        logger.LogWarning("Not within range");
-                        return null;
-                    }
-
-                    var point = new Point { Latitude = lat, Longitude = lon };
-                    var name = cells.Length > 2 ? cells[2] : null;
-                    return new TacoBell(name, point);
-                }
-
-                catch (Exception ex)
-                {
-                    logger.LogError("Failure", ex);
-                    return null;
-                }
+            catch (Exception ex)
+            {
+                logger.LogError("Failure", ex);
+                return null;
             }
         }
     }
